@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page1.component.css']
 })
 export class Page1Component implements OnInit {
+  hero1 = "The Flash";
+  hero2 = "Spiderman";
+  hero3 = "Superman";
 
   constructor() { }
 
