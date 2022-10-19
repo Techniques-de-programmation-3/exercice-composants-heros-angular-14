@@ -1,0 +1,1 @@
+export const HEROS: string[] = ['The Flash', 'Superman', 'Spiderman', 'Batman', '?'];

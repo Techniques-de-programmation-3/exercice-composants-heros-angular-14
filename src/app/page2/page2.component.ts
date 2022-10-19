@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HEROS } from '../mock-heros';
 
 @Component({
   selector: 'app-page2',
@@ -6,11 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page2.component.css']
 })
 export class Page2Component implements OnInit {
-  hero1 = "The Flash";
-  hero2 = "Spiderman";
-  hero3 = "Superman";
-  hero4 = "Wonder Woman";
-  hero5 = "Green Lantern";
+  heros = HEROS;
 
   constructor() { }
 

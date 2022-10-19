@@ -12,11 +12,7 @@
                 <app-carousel></app-carousel>
             </div>
             <div>
-                <app-hero [hero]="hero1"></app-hero>
-                <app-hero [hero]="hero2"></app-hero>
-                <app-hero [hero]="hero3"></app-hero>
-                <app-hero [hero]="hero4"></app-hero>
-                <app-hero [hero]="hero5"></app-hero>
+                <app-hero *ngFor="let h of heros" [hero]="h"></app-hero>
             </div>
         </div>
     </div>
