@@ -2,3 +2,12 @@ div {
     background-color: #c274a9;
     width: 95%
 }
+
+.sidenav-drawer {
+    min-width: 300px;
+}
+
+::ng-deep .sidenav-drawer div {
+    width:80%;
+    height: 80%;
+}

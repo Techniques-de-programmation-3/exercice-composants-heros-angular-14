@@ -10,6 +10,13 @@ import { Page1Component } from './page1/page1.component';
 import { Page2Component } from './page2/page2.component';
 import { PiedPageComponent } from './pied-page/pied-page.component';
 import { RechercheComponent } from './recherche/recherche.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -24,7 +31,13 @@ import { RechercheComponent } from './recherche/recherche.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule, 
+    MatCardModule, 
+    MatToolbarModule, 
+    MatListModule, 
+    MatDividerModule, 
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
