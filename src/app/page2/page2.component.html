@@ -21,7 +21,9 @@
                         <!--<app-hero *ngFor="let h of heros" [hero]="h"></app-hero>-->
                         <mat-list>
                             <ng-container *ngFor="let h of heros">
-                                <mat-list-item>{{h}}</mat-list-item>
+                                <mat-list-item>
+                                    {{h}} &nbsp;<i *ngIf="h==='The Flash'">(Mon héro préféré!)</i>
+                                </mat-list-item>
                                 <mat-divider></mat-divider>
                             </ng-container>
                         </mat-list>
