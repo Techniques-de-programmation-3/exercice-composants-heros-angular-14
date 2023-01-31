@@ -18,11 +18,11 @@
                         <app-carousel></app-carousel>
                     </div>
                     <div>
-                        <!--<app-hero *ngFor="let h of heros" [hero]="h"></app-hero>-->
+                        <!--<app-hero *ngFor="let h of heros" [hero]="h.nom"></app-hero>-->
                         <mat-list>
                             <ng-container *ngFor="let h of heros">
                                 <mat-list-item>
-                                    {{h}} &nbsp;<i *ngIf="h==='The Flash'">(Mon héro préféré!)</i>
+                                    {{h.nom}} &nbsp;<i *ngIf="h.nom==='The Flash'">(Mon héro préféré!)</i>
                                 </mat-list-item>
                                 <mat-divider></mat-divider>
                             </ng-container>
