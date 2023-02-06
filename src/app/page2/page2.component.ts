@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Hero } from '../hero';
+import { HeroService } from '../hero.service';
 import { HEROS } from '../mock-heros';
 
 @Component({
@@ -7,11 +9,17 @@ import { HEROS } from '../mock-heros';
   styleUrls: ['./page2.component.css']
 })
 export class Page2Component implements OnInit {
-  heros = HEROS;
+  heros : Hero[] = [] //HEROS;
 
-  constructor() { }
+  constructor(private heroService:HeroService) { }
 
   ngOnInit(): void {
+    this.getHeros();
+  }
+
+  getHeros(): void {
+    this.heroService.getHeros()
+      .subscribe(resultat => this.heros = resultat);
   }
 
 }

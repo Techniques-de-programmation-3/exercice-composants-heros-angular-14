@@ -17,6 +17,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { HttpClientModule } from '@angular/common/http';
+
+import { HeroService } from './hero.service';
 
 @NgModule({
   declarations: [
@@ -37,9 +40,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatToolbarModule, 
     MatListModule, 
     MatDividerModule, 
-    MatSidenavModule
+    MatSidenavModule, 
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HeroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
