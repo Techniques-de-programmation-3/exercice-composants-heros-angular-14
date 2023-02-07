@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-table-heros',
@@ -12,10 +13,13 @@ import { MatSort } from '@angular/material/sort';
 })
 export class TableHerosComponent implements OnInit {
   dataSourceHeros: MatTableDataSource<Hero> = new MatTableDataSource();
-  columnsToDisplay = ['nom'];
+  columnsToDisplay = ['nom', 'actions'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatTable) tableHeros!: MatTable<Hero>;
+
+  newHero: Hero = { nom: '' };
 
   constructor(private heroService: HeroService) { 
     
@@ -31,12 +35,28 @@ export class TableHerosComponent implements OnInit {
         this.dataSourceHeros = new MatTableDataSource(resultat);
         this.dataSourceHeros.paginator = this.paginator;
         this.dataSourceHeros.sort = this.sort;
+        this.tableHeros.renderRows();
       }
     );
   }
 
-  ngAfterViewInit() {
-    
+  addHero(heroFormAjout: NgForm) { 
+    if (heroFormAjout.valid) { 
+      this.heroService.addHero(this.newHero).subscribe(
+        _ => {
+          heroFormAjout.resetForm();
+          this.getHeros();
+        }
+      );
+    }
+  }
+
+  deleteHero(_id: string) { 
+    this.heroService.deleteHero(_id).subscribe(
+      _ => {
+        this.getHeros();
+      }
+    );
   }
 
   applyFilter(event: Event) {

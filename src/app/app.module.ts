@@ -33,6 +33,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HeroService } from './hero.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { HeroService } from './hero.service';
     MatSortModule,
     MatIconModule,
     MatButtonModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [HeroService],
