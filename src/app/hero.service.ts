@@ -25,6 +25,10 @@ export class HeroService {
     return this.http.post<void>(this.API_URL, hero, httpOptions);
   }
 
+  updateHero(hero: Hero): Observable<void> {
+    return this.http.put<void>(`${this.API_URL}/${hero._id}`, hero, httpOptions);
+  }
+
   deleteHero(_id: string): Observable<void> {
     console.log(`${this.API_URL}\\${_id}`);
     return this.http.delete<void>(`${this.API_URL}/${_id}`, httpOptions);

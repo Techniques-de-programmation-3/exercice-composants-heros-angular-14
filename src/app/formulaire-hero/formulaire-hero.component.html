@@ -1,10 +1,9 @@
-<!-- Formulaire d'ajout -->
+<!-- Formulaire d'ajout / édition -->
 <form #heroFormAjout="ngForm">
     <div>
         <mat-form-field>
             <mat-label>Héro</mat-label>
-            <input matInput placeholder="Ex. Flash" required minlength="2" maxlength="50" name="nom"
-                [(ngModel)]="newHero.nom" #nom="ngModel" (keyup.enter)="addHero(heroFormAjout)">
+            <input matInput placeholder="Ex. Flash" required minlength="2" maxlength="50" name="nom" [(ngModel)]="hero.nom" #nom="ngModel">
         </mat-form-field>
         <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('required')">
             Le nom est obligatoire.
@@ -17,13 +16,20 @@
         </mat-error>
     </div>
 
+
     <div>
+        <button *ngIf="hero._id; else boutonAjout" mat-button mat-aria-label="Modifier" 
+            [disabled]="!heroFormAjout.form.valid" (click)="updateHero(heroFormAjout)">Modifier</button>
+
+        <ng-template #boutonAjout>
+            <button mat-button mat-aria-label="Ajouter" 
+                [disabled]="!heroFormAjout.form.valid" (click)="addHero(heroFormAjout)">
+                Créer
+            </button>
+        </ng-template>
+
         <button mat-button mat-aria-label="Annuler" (click)="annuler()">
             Annuler
-        </button>
-
-        <button mat-button mat-aria-label="Ajouter" [disabled]="!heroFormAjout.form.valid" (click)="addHero(heroFormAjout)">
-            Créer
         </button>
     </div>
 </form>

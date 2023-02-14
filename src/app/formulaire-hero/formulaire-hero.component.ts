@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 
@@ -9,22 +9,41 @@ import { HeroService } from '../hero.service';
   templateUrl: './formulaire-hero.component.html',
   styleUrls: ['./formulaire-hero.component.css']
 })
+  
 export class FormulaireHeroComponent implements OnInit {
-  
-  newHero: Hero = { nom: '' };
-  
-  constructor(private heroService: HeroService, public dialogRef: MatDialogRef<FormulaireHeroComponent>) { }
 
+  hero: Hero = { nom: '' };
+  
+  constructor(
+    private heroService: HeroService,
+    public dialogRef: MatDialogRef<FormulaireHeroComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Hero) { 
+      
+      if (data) { 
+        this.hero = data;
+      }
+  }
+  
   ngOnInit(): void {
   }
 
   addHero(heroFormAjout: NgForm) {
     if (heroFormAjout.valid) {
-      this.heroService.addHero(this.newHero).subscribe(
+      this.heroService.addHero(this.hero).subscribe(
         _ => {
           heroFormAjout.resetForm();
-          this.dialogRef.close();
-          //this.heroAjoute.emit();
+          this.dialogRef.close("Héro ajouté!");
+        }
+      );
+    }
+  }
+
+  updateHero(heroFormAjout: NgForm) {
+    if (heroFormAjout.valid) {
+      this.heroService.updateHero(this.hero).subscribe(
+        _ => {
+          heroFormAjout.resetForm();
+          this.dialogRef.close("Héro modifié!");
         }
       );
     }

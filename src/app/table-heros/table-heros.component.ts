@@ -5,7 +5,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog, MAT_DIALOG_DATA, _closeDialogVia } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormulaireHeroComponent } from '../formulaire-hero/formulaire-hero.component';
 
 @Component({
@@ -42,15 +42,16 @@ export class TableHerosComponent implements OnInit {
   }
 
   openDialog(hero?: Hero) { 
-    
+    console.log(hero);
     const dialogRef = this.dialog.open(FormulaireHeroComponent, {
-        data: {
-          hero: hero,
-        },
+        data: hero,
       });
     
     dialogRef.afterClosed().subscribe(result => {
       console.log('Le dialog du formulaire de héro a été fermé');
+      this._snackBar.open(result, undefined, {
+        duration: 2000
+      });
       this.getHeros();
     });
   }
@@ -64,13 +65,6 @@ export class TableHerosComponent implements OnInit {
         });
       }
     );
-  }
-
-  heroAjoute() { 
-    this.getHeros();
-    this._snackBar.open("Héro ajouté!", undefined, {
-      duration: 2000
-    });
   }
 
   applyFilter(event: Event) {
