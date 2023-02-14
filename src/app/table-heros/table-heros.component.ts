@@ -44,9 +44,7 @@ export class TableHerosComponent implements OnInit {
   openDialog(hero?: Hero) { 
     
     const dialogRef = this.dialog.open(FormulaireHeroComponent, {
-        data: {
-          hero: hero,
-        },
+        data: hero
       });
     
     dialogRef.afterClosed().subscribe(result => {
