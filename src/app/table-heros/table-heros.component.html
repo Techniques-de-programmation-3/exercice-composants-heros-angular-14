@@ -3,9 +3,11 @@
     <form #heroFormAjout="ngForm">
         <mat-form-field>
             <mat-label>Héro</mat-label>
-            <input matInput placeholder="Ex. Flash" required minlength="2" maxlength="50" name="nom" [(ngModel)]="newHero.nom" #nom="ngModel" (keyup.enter)="addHero(heroFormAjout)">
+            <input matInput placeholder="Ex. Flash" required minlength="2" maxlength="50" name="nom" 
+                [(ngModel)]="newHero.nom" #nom="ngModel" (keyup.enter)="addHero(heroFormAjout)">
         </mat-form-field>
-        <button mat-fab color="primary" aria-label="Ajouter" [disabled]="!heroFormAjout.form.valid" (click)="addHero(heroFormAjout)">
+        <button mat-fab color="primary" aria-label="Ajouter" [disabled]="!heroFormAjout.form.valid" 
+            (click)="addHero(heroFormAjout)">
             <mat-icon>add</mat-icon>
         </button>
         <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('required')">
@@ -38,7 +40,7 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
         <td mat-cell *matCellDef="let hero">
-            <button mat-icon-button aria-label="Supprimer" (click)="deleteHero(hero._id)">
+            <button mat-icon-button aria -label="Supprimer" (click)="deleteHero(hero._id)">
                 <mat-icon>delete</mat-icon>
             </button>
         </td>

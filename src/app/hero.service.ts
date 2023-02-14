@@ -29,4 +29,8 @@ export class HeroService {
     console.log(`${this.API_URL}\\${_id}`);
     return this.http.delete<void>(`${this.API_URL}/${_id}`, httpOptions);
   }
+
+  getProduits(): Observable<any[]>  { 
+    return this.http.get<any[]>('http://localhost/api-produits/');
+  }
 }

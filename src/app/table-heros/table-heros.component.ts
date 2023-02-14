@@ -5,6 +5,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-table-heros',
@@ -21,12 +22,14 @@ export class TableHerosComponent implements OnInit {
 
   newHero: Hero = { nom: '' };
 
-  constructor(private heroService: HeroService) { 
+  constructor(private heroService: HeroService, private _snackBar: MatSnackBar) { 
     
   }
 
   ngOnInit(): void {
-    this.getHeros()
+    this.heroService.getProduits().subscribe(
+      result => console.log(result));
+    this.getHeros();
   }
 
   getHeros() { 
@@ -46,6 +49,9 @@ export class TableHerosComponent implements OnInit {
         _ => {
           heroFormAjout.resetForm();
           this.getHeros();
+          this._snackBar.open("Héro ajouté!", undefined, {
+            duration: 2000
+          });
         }
       );
     }
@@ -55,6 +61,9 @@ export class TableHerosComponent implements OnInit {
     this.heroService.deleteHero(_id).subscribe(
       _ => {
         this.getHeros();
+        this._snackBar.open("Héro supprimé!", undefined, {
+          duration: 2000
+        });
       }
     );
   }
