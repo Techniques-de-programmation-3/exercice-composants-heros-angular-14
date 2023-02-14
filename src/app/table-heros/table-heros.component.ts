@@ -20,41 +20,24 @@ export class TableHerosComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) tableHeros!: MatTable<Hero>;
 
-  newHero: Hero = { nom: '' };
-
   constructor(private heroService: HeroService, private _snackBar: MatSnackBar) { 
     
   }
 
   ngOnInit(): void {
-    this.heroService.getProduits().subscribe(
-      result => console.log(result));
     this.getHeros();
   }
 
   getHeros() { 
     this.heroService.getHeros().subscribe(
       resultat => {
+        console.log(resultat);
         this.dataSourceHeros = new MatTableDataSource(resultat);
         this.dataSourceHeros.paginator = this.paginator;
         this.dataSourceHeros.sort = this.sort;
         this.tableHeros.renderRows();
       }
     );
-  }
-
-  addHero(heroFormAjout: NgForm) { 
-    if (heroFormAjout.valid) { 
-      this.heroService.addHero(this.newHero).subscribe(
-        _ => {
-          heroFormAjout.resetForm();
-          this.getHeros();
-          this._snackBar.open("Héro ajouté!", undefined, {
-            duration: 2000
-          });
-        }
-      );
-    }
   }
 
   deleteHero(_id: string) { 
@@ -66,6 +49,13 @@ export class TableHerosComponent implements OnInit {
         });
       }
     );
+  }
+
+  heroAjoute() { 
+    this.getHeros();
+    this._snackBar.open("Héro ajouté!", undefined, {
+      duration: 2000
+    });
   }
 
   applyFilter(event: Event) {

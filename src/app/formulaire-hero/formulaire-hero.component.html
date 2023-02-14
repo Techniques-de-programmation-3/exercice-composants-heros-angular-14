@@ -1,0 +1,21 @@
+<!-- Formulaire d'ajout -->
+<form #heroFormAjout="ngForm">
+    <mat-form-field>
+        <mat-label>Héro</mat-label>
+        <input matInput placeholder="Ex. Flash" required minlength="2" maxlength="50" name="nom"
+            [(ngModel)]="newHero.nom" #nom="ngModel" (keyup.enter)="addHero(heroFormAjout)">
+    </mat-form-field>
+    <button mat-fab color="primary" aria-label="Ajouter" [disabled]="!heroFormAjout.form.valid"
+        (click)="addHero(heroFormAjout)">
+        <mat-icon>add</mat-icon>
+    </button>
+    <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('required')">
+        Le nom est obligatoire.
+    </mat-error>
+    <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('minlength')">
+        Le nom doit contenir au moins 2 caractères.
+    </mat-error>
+    <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('maxlength')">
+        Le nom doit contenir au maximum 50 caractères.
+    </mat-error>
+</form>

@@ -33,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { HeroService } from './hero.service';
 import { FormsModule } from '@angular/forms';
+import { FormulaireHeroComponent } from './formulaire-hero/formulaire-hero.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { FormsModule } from '@angular/forms';
     Page2Component,
     PiedPageComponent,
     RechercheComponent,
-    TableHerosComponent
+    TableHerosComponent,
+    FormulaireHeroComponent
   ],
   imports: [
     BrowserModule,
