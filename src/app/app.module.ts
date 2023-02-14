@@ -27,6 +27,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 import { HttpClientModule } from '@angular/common/http';
@@ -66,7 +68,8 @@ import { FormulaireHeroComponent } from './formulaire-hero/formulaire-hero.compo
     MatButtonModule,
     MatSnackBarModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule, 
+    MatDialogModule
   ],
   providers: [HeroService],
   bootstrap: [AppComponent]

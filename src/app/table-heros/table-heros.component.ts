@@ -4,8 +4,9 @@ import { HeroService } from '../hero.service';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MAT_DIALOG_DATA, _closeDialogVia } from '@angular/material/dialog';
+import { FormulaireHeroComponent } from '../formulaire-hero/formulaire-hero.component';
 
 @Component({
   selector: 'app-table-heros',
@@ -20,7 +21,7 @@ export class TableHerosComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) tableHeros!: MatTable<Hero>;
 
-  constructor(private heroService: HeroService, private _snackBar: MatSnackBar) { 
+  constructor(private heroService: HeroService, private _snackBar: MatSnackBar, public dialog: MatDialog) { 
     
   }
 
@@ -38,6 +39,20 @@ export class TableHerosComponent implements OnInit {
         this.tableHeros.renderRows();
       }
     );
+  }
+
+  openDialog(hero?: Hero) { 
+    
+    const dialogRef = this.dialog.open(FormulaireHeroComponent, {
+        data: {
+          hero: hero,
+        },
+      });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Le dialog du formulaire de héro a été fermé');
+      this.getHeros();
+    });
   }
 
   deleteHero(_id: string) { 
